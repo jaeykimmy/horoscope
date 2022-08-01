@@ -2,12 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Aztro() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     json: {},
-  //   };
-  // }
   const [json, setJson] = useState({});
 
   useEffect(() => {
@@ -20,21 +14,9 @@ export default function Aztro() {
       })
       // .then((response) => response.json())
       .then(function (response) {
-        console.log(response.data);
         setJson(response.data);
       });
   }, []);
-
-  // componentDidMount() {
-  //   const URL = "https://aztro.sameerkumar.website/?sign=gemini&day=yesterday";
-  //   fetch(URL, {
-  //     method: "POST",
-  //   })
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       this.setState({ json });
-  //     });
-  // }
 
   return (
     <div>
