@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Autocomplete } from "@mui/material";
 
 export default function Aztro() {
   const [json, setJson] = useState({});
   const [sign, setSign] = useState("");
   const [day, setDay] = useState("");
+  const dayOptions = ["yesterday", "today", "tomorrow"];
 
-  const handleSign = (event) => {
-    event.preventDefault();
+  const onDayChange = (_, value) => {
+    setDay(value);
   };
   const searchSignDay = () => {
     axios
@@ -27,7 +28,15 @@ export default function Aztro() {
     <div>
       <>
         <TextField onChange={(e) => setSign(e.target.value)} />
-        <TextField onChange={(e) => setDay(e.target.value)} />
+        {/* <TextField onChange={(e) => setDay(e.target.value)} /> */}
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={dayOptions}
+          sx={{ width: 300 }}
+          onChange={onDayChange}
+          renderInput={(params) => <TextField {...params} label="Day" />}
+        />
         <Button type="submit" onClick={searchSignDay}>
           Submit
         </Button>
