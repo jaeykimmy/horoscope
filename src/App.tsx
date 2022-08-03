@@ -61,37 +61,10 @@ export default function Aztro() {
   return (
     <>
       <div className="App">
-        <Card sx={{ padding: "16px", overflow: "scroll" }}>
+        <Card sx={{ padding: "16px" }}>
           <h1>Daily Horoscope</h1>
-          <div className="response">
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={signOptions}
-              sx={{
-                width: 300,
-                "padding-bottom": "16px",
-              }}
-              onChange={onSignChange}
-              renderInput={(params: object) => (
-                <TextField {...params} label="Sign" />
-              )}
-            />
-            <Autocomplete
-              defaultValue="Today"
-              disablePortal
-              id="combo-box-demo"
-              options={dayOptions}
-              sx={{ width: 300, "padding-bottom": "16px" }}
-              onChange={onDayChange}
-              renderInput={(params: object) => (
-                <TextField {...params} label="Day" />
-              )}
-            />
-          </div>
-          <Button type="submit" onClick={searchSignDay}>
-            Submit
-          </Button>
+          <div className="response"></div>
+
           {json && (
             <Card className="response-container" sx={{ padding: "16px" }}>
               Your Horoscope for: {json.current_date} <br />
@@ -112,9 +85,43 @@ export default function Aztro() {
               Lucky Number: {json.lucky_number} <br />
               Lucky Time: {json.lucky_time} <br />
               Mood: {json.mood} <br />"{json.description}" <br />
+              <Button onClick={() => window.location.reload()}>
+                Check another Sign
+              </Button>
             </Card>
           )}
-          {!json && <p>What's in the stars for you today</p>}
+          {!json && (
+            <div>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={signOptions}
+                sx={{
+                  width: 300,
+                  "padding-bottom": "16px",
+                }}
+                onChange={onSignChange}
+                renderInput={(params: object) => (
+                  <TextField {...params} label="Sign" />
+                )}
+              />
+              <Autocomplete
+                defaultValue="Today"
+                disablePortal
+                id="combo-box-demo"
+                options={dayOptions}
+                sx={{ width: 300, "padding-bottom": "16px" }}
+                onChange={onDayChange}
+                renderInput={(params: object) => (
+                  <TextField {...params} label="Day" />
+                )}
+              />
+              <Button type="submit" onClick={searchSignDay}>
+                Submit
+              </Button>
+              <p>What's in the stars for you today</p>
+            </div>
+          )}
         </Card>
       </div>
       <footer className="footer">
