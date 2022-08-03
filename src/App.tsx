@@ -61,7 +61,7 @@ export default function Aztro() {
   return (
     <>
       <div className="App">
-        <Card sx={{ padding: "16px" }}>
+        <Card sx={{ padding: "16px", overflow: "scroll" }}>
           <h1>Daily Horoscope</h1>
           <div className="response">
             <Autocomplete
