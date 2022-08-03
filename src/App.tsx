@@ -59,70 +59,72 @@ export default function Aztro() {
   console.log(json);
 
   return (
-    <div className="App">
-      <Card sx={{ padding: "16px" }}>
-        <h1>Daily Horoscope</h1>
-        <div className="response">
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={signOptions}
-            sx={{
-              width: 300,
-              "padding-bottom": "16px",
-            }}
-            onChange={onSignChange}
-            renderInput={(params: object) => (
-              <TextField {...params} label="Sign" />
-            )}
-          />
-          <Autocomplete
-            defaultValue="Today"
-            disablePortal
-            id="combo-box-demo"
-            options={dayOptions}
-            sx={{ width: 300, "padding-bottom": "16px" }}
-            onChange={onDayChange}
-            renderInput={(params: object) => (
-              <TextField {...params} label="Day" />
-            )}
-          />
-        </div>
-        <Button type="submit" onClick={searchSignDay}>
-          Submit
-        </Button>
-        {json && (
-          <Card className="response-container" sx={{ padding: "16px" }}>
-            Your Horoscope for: {json.current_date} <br />
-            <h2>
-              {sign}: {json.date_range}{" "}
-            </h2>
-            <div
-              style={{
-                "background-color": `${json.color}`,
-                padding: "10px",
-                "border-radius": "32px",
-                "margin-bottom": "8px",
+    <>
+      <div className="App">
+        <Card sx={{ padding: "16px" }}>
+          <h1>Daily Horoscope</h1>
+          <div className="response">
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={signOptions}
+              sx={{
+                width: 300,
+                "padding-bottom": "16px",
               }}
-            >
-              {json.color} <br />
-            </div>
-            Compatibility: {json.compatibility} <br />
-            Lucky Number: {json.lucky_number} <br />
-            Lucky Time: {json.lucky_time} <br />
-            Mood: {json.mood} <br />"{json.description}" <br />
-          </Card>
-        )}
-        {!json && <p>What's in the stars for you today</p>}
-      </Card>
-      <footer>
+              onChange={onSignChange}
+              renderInput={(params: object) => (
+                <TextField {...params} label="Sign" />
+              )}
+            />
+            <Autocomplete
+              defaultValue="Today"
+              disablePortal
+              id="combo-box-demo"
+              options={dayOptions}
+              sx={{ width: 300, "padding-bottom": "16px" }}
+              onChange={onDayChange}
+              renderInput={(params: object) => (
+                <TextField {...params} label="Day" />
+              )}
+            />
+          </div>
+          <Button type="submit" onClick={searchSignDay}>
+            Submit
+          </Button>
+          {json && (
+            <Card className="response-container" sx={{ padding: "16px" }}>
+              Your Horoscope for: {json.current_date} <br />
+              <h2>
+                {sign}: {json.date_range}{" "}
+              </h2>
+              <div
+                style={{
+                  "background-color": `${json.color}`,
+                  padding: "10px",
+                  "border-radius": "32px",
+                  "margin-bottom": "8px",
+                }}
+              >
+                {json.color} <br />
+              </div>
+              Compatibility: {json.compatibility} <br />
+              Lucky Number: {json.lucky_number} <br />
+              Lucky Time: {json.lucky_time} <br />
+              Mood: {json.mood} <br />"{json.description}" <br />
+            </Card>
+          )}
+          {!json && <p>What's in the stars for you today</p>}
+        </Card>
+      </div>
+      <footer className="footer">
         <a
           href="https://aztro.sameerkumar.website/"
-          style={{ "text-decoration": "none", color: "white" }}
+          style={{ "text-decoration": "none", color: "black" }}
         >
           <p>made using aztro API</p>
         </a>
       </footer>
-    </div>
+    </>
   );
 }
