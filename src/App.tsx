@@ -4,6 +4,7 @@ import {
   TextField,
   Button,
   Autocomplete,
+  Card,
 } from "../node_modules/@mui/material/index";
 import "./App.scss";
 
@@ -22,20 +23,20 @@ export default function Aztro() {
   const [sign, setSign] = useState("");
   const [day, setDay] = useState("");
 
-  const dayOptions = ["yesterday", "today", "tomorrow"];
+  const dayOptions = ["Yesterday", "Today", "Tomorrow"];
   const signOptions = [
-    "aries",
-    "taurus",
-    "gemini",
-    "cancer",
-    "leo",
-    "virgo",
-    "libra",
-    "scorpio",
-    "sagittarius",
-    "capricorn",
-    "aquarius",
-    "pisces",
+    "Aries",
+    "Taurus",
+    "Gemini",
+    "Cancer",
+    "Leo",
+    "Virgo",
+    "Libra",
+    "Scorpio",
+    "Sagittarius",
+    "Capricorn",
+    "Aquarius",
+    "Pisces",
   ];
   const onSignChange = (_: any, value: string) => {
     setSign(value);
@@ -59,40 +60,60 @@ export default function Aztro() {
 
   return (
     <div className="App">
-      <h1>Daily Horoscope</h1>
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={signOptions}
-        sx={{ width: 300 }}
-        onChange={onSignChange}
-        renderInput={(params: object) => <TextField {...params} label="Sign" />}
-      />
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={dayOptions}
-        sx={{ width: 300 }}
-        onChange={onDayChange}
-        renderInput={(params: object) => <TextField {...params} label="Day" />}
-      />
-      <Button type="submit" onClick={searchSignDay}>
-        Submit
-      </Button>
-      {json && (
-        <div className="response-container">
-          Your Horoscope for: {json.current_date} <br />
-          Compatibility: {json.compatibility} <br />
-          Lucky Number: {json.lucky_number} <br />
-          Lucky Time: {json.lucky_time} <br />
-          Date Range: {json.date_range} <br />
-          Mood: {json.mood} <br />
-          <div style={{ "background-color": `${json.color}` }}>
-            Color: {json.color} <br />
-          </div>
-          Description: {json.description} <br />
+      <Card sx={{ padding: "16px" }}>
+        <h1>Daily Horoscope</h1>
+        <div className="response">
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={signOptions}
+            sx={{
+              width: 300,
+              "padding-bottom": "16px",
+            }}
+            onChange={onSignChange}
+            renderInput={(params: object) => (
+              <TextField {...params} label="Sign" />
+            )}
+          />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={dayOptions}
+            sx={{ width: 300, "padding-bottom": "16px" }}
+            onChange={onDayChange}
+            renderInput={(params: object) => (
+              <TextField {...params} label="Day" />
+            )}
+          />
         </div>
-      )}
+        <Button type="submit" onClick={searchSignDay}>
+          Submit
+        </Button>
+        {json && (
+          <Card className="response-container" sx={{ padding: "16px" }}>
+            Your Horoscope for: {json.current_date} <br />
+            <h2>
+              {sign}: {json.date_range}{" "}
+            </h2>
+            <div
+              style={{
+                "background-color": `${json.color}`,
+                padding: "10px",
+                "border-radius": "32px",
+                "margin-bottom": "8px",
+              }}
+            >
+              {json.color} <br />
+            </div>
+            Compatibility: {json.compatibility} <br />
+            Lucky Number: {json.lucky_number} <br />
+            Lucky Time: {json.lucky_time} <br />
+            Mood: {json.mood} <br />"{json.description}" <br />
+          </Card>
+        )}
+        {!json && <p>What's in the stars for you today</p>}
+      </Card>
     </div>
   );
 }

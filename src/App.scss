@@ -4,6 +4,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: pink;
+  height: 100vh;
+  .response {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
   .response-container {
     width: 300px;
   }
