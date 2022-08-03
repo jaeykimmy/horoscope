@@ -55,6 +55,7 @@ export default function Aztro() {
       .then(function (response: any) {
         setJson(response.data);
       });
+    window.scrollTo(0, 0);
   };
   console.log(json);
 
@@ -69,11 +70,14 @@ export default function Aztro() {
             <Card className="response-container" sx={{ padding: "16px" }}>
               Your Horoscope for: {json.current_date} <br />
               <h2>
-                {sign}: {json.date_range}{" "}
+                {sign}:<br />
+                {json.date_range}{" "}
               </h2>
               <div
                 style={{
-                  "background-color": `${json.color}`,
+                  "background-color": `${json.color}`.substring(
+                    `${json.color}`.indexOf(" ") + 1
+                  ),
                   padding: "10px",
                   "border-radius": "32px",
                   "margin-bottom": "8px",
