@@ -5,6 +5,7 @@ import {
   Button,
   Autocomplete,
 } from "../node_modules/@mui/material/index";
+import "./App.scss";
 
 export default function Aztro() {
   interface JsonResponse {
@@ -55,45 +56,43 @@ export default function Aztro() {
       });
   };
   console.log(json);
+
   return (
-    <div>
-      <>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={signOptions}
-          sx={{ width: 300 }}
-          onChange={onSignChange}
-          renderInput={(params: object) => (
-            <TextField {...params} label="Sign" />
-          )}
-        />
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={dayOptions}
-          sx={{ width: 300 }}
-          onChange={onDayChange}
-          renderInput={(params: object) => (
-            <TextField {...params} label="Day" />
-          )}
-        />
-        <Button type="submit" onClick={searchSignDay}>
-          Submit
-        </Button>
-        {json && (
-          <div>
-            Current Date: {json.current_date} <br />
-            Compatibility: {json.compatibility} <br />
-            Lucky Number: {json.lucky_number} <br />
-            Lucky Time: {json.lucky_time} <br />
+    <div className="App">
+      <h1>Daily Horoscope</h1>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={signOptions}
+        sx={{ width: 300 }}
+        onChange={onSignChange}
+        renderInput={(params: object) => <TextField {...params} label="Sign" />}
+      />
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={dayOptions}
+        sx={{ width: 300 }}
+        onChange={onDayChange}
+        renderInput={(params: object) => <TextField {...params} label="Day" />}
+      />
+      <Button type="submit" onClick={searchSignDay}>
+        Submit
+      </Button>
+      {json && (
+        <div className="response-container">
+          Your Horoscope for: {json.current_date} <br />
+          Compatibility: {json.compatibility} <br />
+          Lucky Number: {json.lucky_number} <br />
+          Lucky Time: {json.lucky_time} <br />
+          Date Range: {json.date_range} <br />
+          Mood: {json.mood} <br />
+          <div style={{ "background-color": `${json.color}` }}>
             Color: {json.color} <br />
-            Date Range: {json.date_range} <br />
-            Mood: {json.mood} <br />
-            Description: {json.description} <br />
           </div>
-        )}
-      </>
+          Description: {json.description} <br />
+        </div>
+      )}
     </div>
   );
 }
