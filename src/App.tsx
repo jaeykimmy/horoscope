@@ -20,8 +20,25 @@ export default function Aztro() {
   const [json, setJson] = useState<JsonResponse>();
   const [sign, setSign] = useState("");
   const [day, setDay] = useState("");
-  const dayOptions = ["yesterday", "today", "tomorrow"];
 
+  const dayOptions = ["yesterday", "today", "tomorrow"];
+  const signOptions = [
+    "aries",
+    "taurus",
+    "gemini",
+    "cancer",
+    "leo",
+    "virgo",
+    "libra",
+    "scorpio",
+    "sagittarius",
+    "capricorn",
+    "aquarius",
+    "pisces",
+  ];
+  const onSignChange = (_: any, value: string) => {
+    setSign(value);
+  };
   const onDayChange = (_: any, value: string) => {
     setDay(value);
   };
@@ -41,13 +58,16 @@ export default function Aztro() {
   return (
     <div>
       <>
-        <TextField
-          onChange={(e: any) => {
-            setSign(e.target.value);
-            console.log(e);
-          }}
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={signOptions}
+          sx={{ width: 300 }}
+          onChange={onSignChange}
+          renderInput={(params: object) => (
+            <TextField {...params} label="Sign" />
+          )}
         />
-        {/* <TextField onChange={(e) => setDay(e.target.value)} /> */}
         <Autocomplete
           disablePortal
           id="combo-box-demo"
