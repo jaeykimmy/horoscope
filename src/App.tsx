@@ -21,7 +21,7 @@ export default function Aztro() {
   }
   const [json, setJson] = useState<JsonResponse>();
   const [sign, setSign] = useState("");
-  const [day, setDay] = useState("");
+  const [day, setDay] = useState("Today");
 
   const dayOptions = ["Yesterday", "Today", "Tomorrow"];
   const signOptions = [
@@ -77,6 +77,7 @@ export default function Aztro() {
             )}
           />
           <Autocomplete
+            defaultValue="Today"
             disablePortal
             id="combo-box-demo"
             options={dayOptions}
@@ -114,6 +115,14 @@ export default function Aztro() {
         )}
         {!json && <p>What's in the stars for you today</p>}
       </Card>
+      <footer>
+        <a
+          href="https://aztro.sameerkumar.website/"
+          style={{ "text-decoration": "none", color: "white" }}
+        >
+          <p>made using aztro API</p>
+        </a>
+      </footer>
     </div>
   );
 }
