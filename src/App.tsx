@@ -41,7 +41,12 @@ export default function Aztro() {
   return (
     <div>
       <>
-        <TextField onChange={(e: any) => setSign(e.target.value)} />
+        <TextField
+          onChange={(e: any) => {
+            setSign(e.target.value);
+            console.log(e);
+          }}
+        />
         {/* <TextField onChange={(e) => setDay(e.target.value)} /> */}
         <Autocomplete
           disablePortal
@@ -49,7 +54,9 @@ export default function Aztro() {
           options={dayOptions}
           sx={{ width: 300 }}
           onChange={onDayChange}
-          renderInput={(params: any) => <TextField {...params} label="Day" />}
+          renderInput={(params: object) => (
+            <TextField {...params} label="Day" />
+          )}
         />
         <Button type="submit" onClick={searchSignDay}>
           Submit
