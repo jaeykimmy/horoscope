@@ -7,6 +7,7 @@ import {
   Card,
 } from "../node_modules/@mui/material/index";
 import "./App.scss";
+import SignAutocomplete from "./components/SignAutocomplete";
 
 export default function Aztro() {
   interface JsonResponse {
@@ -96,19 +97,11 @@ export default function Aztro() {
           )}
           {!json && (
             <div>
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={signOptions}
-                sx={{
-                  width: 300,
-                  "padding-bottom": "16px",
-                }}
-                onChange={onSignChange}
-                renderInput={(params: object) => (
-                  <TextField {...params} label="Sign" />
-                )}
+              <SignAutocomplete
+                signOptions={signOptions}
+                onSignChange={onSignChange}
               />
+
               <Autocomplete
                 defaultValue="Today"
                 disablePortal
