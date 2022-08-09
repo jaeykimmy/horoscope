@@ -84,7 +84,17 @@ export default function Aztro() {
                   "margin-bottom": "8px",
                 }}
               >
-                {json.color} <br />
+                <div
+                  style={
+                    ["Black", "Blue", "Grey"].some((x) =>
+                      json.color.includes(x)
+                    )
+                      ? { color: "white" }
+                      : { color: "black" }
+                  }
+                >
+                  {json.color}
+                </div>
               </div>
               Compatibility: {json.compatibility} <br />
               Lucky Number: {json.lucky_number} <br />
