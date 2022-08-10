@@ -86,7 +86,7 @@ export default function Aztro() {
               >
                 <div
                   style={
-                    ["Black", "Blue", "Grey"].some((x) =>
+                    ["Black", "Blue", "Grey", "Red"].some((x) =>
                       json.color.includes(x)
                     )
                       ? { color: "white" }
